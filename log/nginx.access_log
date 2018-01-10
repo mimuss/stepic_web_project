@@ -1,0 +1,7 @@
+127.0.0.1 - - [10/Jan/2018:17:58:10 +0300] "GET /hello.html HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7"
+127.0.0.1 - - [10/Jan/2018:17:58:14 +0300] "GET / HTTP/1.1" 403 169 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7"
+127.0.0.1 - - [10/Jan/2018:17:58:16 +0300] "GET /hello.html HTTP/1.1" 200 99 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7"
+127.0.0.1 - - [10/Jan/2018:17:58:17 +0300] "GET /hello.html HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7"
+127.0.0.1 - - [10/Jan/2018:17:58:41 +0300] "GET /hello.html HTTP/1.1" 200 99 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7"
+127.0.0.1 - - [10/Jan/2018:17:58:43 +0300] "GET / HTTP/1.1" 403 169 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7"
+127.0.0.1 - - [10/Jan/2018:17:58:44 +0300] "GET /tbr HTTP/1.1" 404 169 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0.2 Safari/604.4.7"
