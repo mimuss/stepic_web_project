@@ -1,3 +1,9 @@
 2018/01/10 17:58:14 [error] 2884#0: *1 directory index of "/Users/nikita/Testing/course/stepic_web_project/web/uploads/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost"
 2018/01/10 17:58:43 [error] 2884#0: *1 directory index of "/Users/nikita/Testing/course/stepic_web_project/web/uploads/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost"
 2018/01/10 17:58:44 [error] 2884#0: *2 open() "/Users/nikita/Testing/course/stepic_web_project/web/uploads/tbr" failed (2: No such file or directory), client: 127.0.0.1, server: localhost, request: "GET /tbr HTTP/1.1", host: "localhost"
+2018/01/10 18:28:48 [info] 3009#0: *1 kevent() reported that client 127.0.0.1 closed keepalive connection
+2018/01/10 18:29:41 [info] 3009#0: *2 kevent() reported that client 127.0.0.1 closed keepalive connection
+2018/01/10 18:34:58 [info] 3036#0: *1 kevent() reported that client 127.0.0.1 closed keepalive connection
+2018/01/10 18:35:32 [error] 3036#0: *2 open() "/Users/nikita/Testing/course/stepic_web_project/web/public/css/ma.js" failed (2: No such file or directory), client: 127.0.0.1, server: localhost, request: "GET /css/ma.js HTTP/1.1", host: "localhost"
+2018/01/10 18:36:22 [info] 3036#0: *2 kevent() reported that client 127.0.0.1 closed keepalive connection
+2018/01/10 18:36:50 [error] 3036#0: *4 open() "/Users/nikita/Testing/course/stepic_web_project/web/public/js/tbe.s" failed (2: No such file or directory), client: 127.0.0.1, server: localhost, request: "GET /js/tbe.s HTTP/1.1", host: "localhost"
