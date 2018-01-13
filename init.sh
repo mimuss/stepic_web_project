@@ -8,3 +8,4 @@ gunicorn -c '/home/box/stepic_web_project/gunic/gunicorn-django.py' ask.wsgi:app
 cd /home/box/stepic_web_project/gunic/
 gunicorn -c gunicorn-wsgi.py hello:app &
 sudo /etc/init.d/nginx restart
+sudo /etc/init.d/mysql start
