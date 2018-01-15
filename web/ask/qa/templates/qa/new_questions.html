@@ -1,0 +1,12 @@
+{% extends 'qa/base.html' %}
+{% load static %}
+{% block content %}
+    <link type="text/css" href="{% static 'qa/css/style.css' %}" rel="stylesheet">
+    {% for question in questions %}
+        <div>
+            <a href="{% url 'qa:question' question.id %}"><h2>{{ question.title }}</h2></a>
+            <p>{{ question.text }}</p>
+        </div>
+
+    {% endfor %}
+{% endblock %}

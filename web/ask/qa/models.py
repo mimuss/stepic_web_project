@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 
 class QuestionManager(models.Manager):
     def new(self):
-        return self.get_queryset().order_by('added_at')
+        return self.get_queryset().order_by('-id')
 
     def popular(self):
-        return self.get_queryset().order_by('likes')
+        return self.get_queryset().order_by('rating')
 
 class Question(models.Model):
     title = models.CharField(default="", max_length=255)

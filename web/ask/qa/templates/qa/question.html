@@ -1,0 +1,14 @@
+{% extends 'qa/base.html' %}
+
+{% block content %}
+
+    <h1>{{ question.title }}</h1>
+    <p>{{ question.text }}</h1>
+
+    <ul>
+        {% for answer in question.answer_set.all %}
+            <li>{{ answer.text }} -- added by {{ answer.author }} -- added at {{ answer.added_at }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
