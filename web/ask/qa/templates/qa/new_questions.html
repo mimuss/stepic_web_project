@@ -1,5 +1,25 @@
 {% extends 'qa/base.html' %}
 {% load static %}
+
+{% block paginator_block %}
+
+    <ul class="pagination">
+
+        {% for p in paginator.page_range %}
+            {% if p == page.number %}
+                <li class="active">
+             {% else %}
+                <li>
+            {% endif %}
+                <a href="{{ paginator.base_url }}{{ p }}">{{ p }}</a>
+                </li>
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}
+
+
 {% block content %}
     <link type="text/css" href="{% static 'qa/css/style.css' %}" rel="stylesheet">
     {% for question in questions %}

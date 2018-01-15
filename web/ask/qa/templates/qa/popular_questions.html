@@ -1,9 +1,28 @@
 {% extends 'qa/base.html' %}
+
+{% block paginator_block %}
+
+    <ul class="pagination">
+
+        {% for p in paginator.page_range %}
+            {% if p == page.number %}
+                <li class="active">
+             {% else %}
+                <li>
+            {% endif %}
+                <a href="{{ paginator.base_url }}{{ p }}">{{ p }}</a>
+                </li>
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}
+
 {% block content %}
 
     {% for question in questions %}
-        <h1>{{ question.title }}</h1>
-      <p>{{ question.text }}</h1>
+        <a href="{% url 'qa:question' question.id %}"><h2>{{ question.title }}</h2></a>
+        <p>{{ question.text }}</h1>
 
       <ul>
         {% for answer in question.answer_set.all %}

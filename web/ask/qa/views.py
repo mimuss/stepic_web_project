@@ -1,7 +1,8 @@
-from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
+from django.core.paginator import Paginator, EmptyPage
+from django.urls import reverse
 # Create your views here.
 
 from .models import Question, Answer
@@ -17,14 +18,40 @@ def question(request, pk):
 
 @require_GET
 def new_questions(request):
-    page = request.GET.get('page')
+    questions = Question.objects.new()
+    limit = 10
+    try:
+        page = int(request.GET.get('page', 1))
+    except ValueError:
+        raise 404
+    paginator = Paginator(questions, limit)
+    paginator.base_url = reverse('qa:new_questions') + "?page="
+    try:
+        page = paginator.page(page)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
     return render(request, 'qa/new_questions.html', {
-        'questions': Question.objects.new()
+        'questions': page.object_list,
+        'paginator': paginator,
+        'page': page
     })
 
 @require_GET
 def popular_questions(request):
-    page = request.GET.get('page')
-    return render(request, 'qa/popular_questions.html',{
-        'questions': Question.objects.popular()
+    questions = Question.objects.popular()
+    limit = 10
+    try:
+        page = int(request.GET.get('page', 1))
+    except ValueError:
+        raise 404
+    paginator = Paginator(questions, limit)
+    paginator.base_url = reverse('qa:popular_questions') + "?page="
+    try:
+        page = paginator.page(page)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
+    return render(request, 'qa/popular_questions.html', {
+        'questions': page.object_list,
+        'paginator': paginator,
+        'page': page
     })

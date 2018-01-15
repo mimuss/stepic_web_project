@@ -19,7 +19,7 @@
 
         <!--LOGO -->
         <div class="navbar-header">
-            <a href="{% url 'qa:new_questions' %}" class="navbar-brand">Anwser it!</a>
+            <a href="{% url 'qa:new_questions' %}?page=1" class="navbar-brand">Anwser it!</a>
 
         </div>
 
@@ -33,9 +33,18 @@
     </div>
 </nav>
 
-<div class="container">
-    {% block content %}
 
+
+
+<div class="container">
+
+    <nav aria-label="Page navigation">
+        {% block paginator_block %}
+
+        {% endblock %}
+    </nav>
+
+    {% block content %}
     {% endblock %}
 </div>
 
