@@ -8,10 +8,6 @@ class AskForm(forms.Form):
     title = forms.CharField(max_length=100)
     text = forms.CharField(widget=forms.Textarea)
 
-    def __init__(self, user, post_request):
-        self._user = user
-        super(AskForm, self).__init__(post_request)
-
     def save(self):
         self.cleaned_data['author'] = self._user
         question = Question(**self.cleaned_data)

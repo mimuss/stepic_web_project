@@ -33,7 +33,8 @@ def question(request, pk):
 
 def question_add(request):
     user = User.objects.get(username='Nikita')
-    form = AskForm(user, request.POST)
+    form = AskForm(request.POST)
+    form._user = user
     if request.method == 'POST':
         if form.is_valid():
             q = form.save()
