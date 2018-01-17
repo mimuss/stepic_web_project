@@ -1,14 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import reverse
 
 # Create your models here.
+
 
 class QuestionManager(models.Manager):
     def new(self):
         return self.get_queryset().order_by('-id')
 
     def popular(self):
-        return self.get_queryset().order_by('rating')
+        return self.get_queryset().order_by('-rating')
+
 
 class Question(models.Model):
     title = models.CharField(default="", max_length=255)
@@ -19,8 +22,12 @@ class Question(models.Model):
     author = models.ForeignKey(User, related_name='questions')
     objects = QuestionManager()
 
+    def get_url(self):
+        return reverse('qa:question', kwargs={'pk': self.pk})
+
     def __str__(self):
         return self.title
+
 
 class Answer(models.Model):
     text = models.TextField()
