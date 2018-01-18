@@ -4,19 +4,50 @@ from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator, EmptyPage
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
 # Create your views here.
 
 from .models import Question, Answer
-from .forms import AskForm, AnswerForm
+from .forms import AskForm, AnswerForm, LoginForm, SignUpForm
 
 
 def test(request):
     return HttpResponse('OK')
 
 
+def sign_up(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            _ = form.save()
+            user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            login(request, user)
+            return HttpResponseRedirect(reverse('qa:new_questions'))
+    else:
+        form = SignUpForm()
+    return render(request, 'qa/sign_up.html', {
+        'form': form
+    })
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        form.request = request
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return HttpResponseRedirect(reverse('qa:new_questions'))
+    else:
+        form = LoginForm()
+    return render(request, 'qa/login.html', {
+        'form': form
+    })
+
+
 def question(request, pk):
     q = get_object_or_404(Question, pk=pk)
-    user = User.objects.get(username='Nikita')
+    user = request.user
     if request.method == 'POST':
         form = AnswerForm(request.POST)
         form._user = user
@@ -32,7 +63,7 @@ def question(request, pk):
 
 
 def question_add(request):
-    user = User.objects.get(username='Nikita')
+    user = request.user
     form = AskForm(request.POST)
     form._user = user
     if request.method == 'POST':

@@ -1,7 +1,46 @@
 from django import forms
 from .models import Question, Answer
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 #form for adding a question
+
+
+class SignUpForm(forms.Form):
+    username = forms.CharField(max_length=20)
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    def clean__email(self):
+        try:
+            User.objects.get(email=self.cleaned_data['email'])
+            raise forms.ValidationError('User with this email already exists')
+        except User.DoesNotExist:
+            return self.cleaned_data['email']
+
+    def clean_username(self):
+        try:
+            User.objects.get(username=self.cleaned_data['username'])
+            raise forms.ValidationError('User with this username already exists')
+        except User.DoesNotExist:
+            return self.cleaned_data['username']
+
+    def save(self):
+        return User.objects.create_user(username=self.cleaned_data['username'],
+                                        email=self.cleaned_data['email'],
+                                        password=self.cleaned_data['password'])
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=20)
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    def clean(self):
+        self._user = authenticate(self.request, username=self.cleaned_data['username'], password=self.cleaned_data['password'])
+        if self._user is None:
+            raise forms.ValidationError("Username or password are not correct/does not exist")
+
+    def get_user(self):
+        return self._user
 
 
 class AskForm(forms.Form):
